@@ -1,0 +1,3 @@
+[submodule "nx_animation"]
+	path = nx_animation
+	url = https://github.com/ankurankan/nx_animation
