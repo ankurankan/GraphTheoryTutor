@@ -1,4 +1,3 @@
-import matplotlib
 import networkx as nx
 import json
 
@@ -33,5 +32,5 @@ def traverse_linked_list(linked_list):
     print(json.dumps(trace))
 
 if __name__ == '__main__':
-    linked_list = [(1,2), (2,3), (3,4), (4,5), (5,6)]
+    linked_list = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
     traverse_linked_list(linked_list)
