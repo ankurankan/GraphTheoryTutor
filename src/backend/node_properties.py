@@ -16,6 +16,7 @@ def traverse_linked_list(linked_list):
     """
     Linked List in form of [(1,2), (2,3), (4,5), (5,6)]
     """
+    code = """node = head\nwhile node != None:\n\tnode = node.next"""
     trace = {}
     G = nx.DiGraph(linked_list)
     step = 0
