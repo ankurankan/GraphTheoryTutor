@@ -66,11 +66,12 @@ class Visualize(bdb.Bdb):
             if frame_var_dict != prev_frame:
                 for var, obj in frame_var_dict.items():
                     if isinstance(obj, Node):
-                        state = get_state(G)
+                        state = get_state(G)               # how to always get a graph from the user code
                         state.pointers[var] = obj_id[obj]  # obj_id is a dictionary mapping
                                                            # obj to its cytoscape id. id should be unique.
                         trace[step] = state
                         step += 1
+        return trace
 
     def check_var_assignment(self, frame):
         variables = frame.f_code.co_varnames
