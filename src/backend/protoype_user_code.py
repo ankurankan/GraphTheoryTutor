@@ -22,7 +22,7 @@ import bdb
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f60d10>, 'curr': <__main__.Node object at 0x7f3fe9f60d90>},
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f60f90>, 'curr': <__main__.Node object at 0x7f3fe9f63090>},
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f63250>, 'curr': <__main__.Node object at 0x7f3fe9f63310>},
-# {'linked': <__main__.LinkedList object at 0x7f3fe9f634d0>, 'curr': <__main__.Node object at 0x7f3fe9f635d0>}, 
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f634d0>, 'curr': <__main__.Node object at 0x7f3fe9f635d0>},
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f63750>, 'curr': <__main__.Node object at 0x7f3fe9f63850>},
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f639d0>, 'curr': <__main__.Node object at 0x7f3fe9f63b10>},
 # {'linked': <__main__.LinkedList object at 0x7f3fe9f63c50>, 'curr': <__main__.Node object at 0x7f3fe9f63d90>},
@@ -59,11 +59,18 @@ class Visualize(bdb.Bdb):
 
     @staticmethod
     def create_visualization(frame_list):
+        trace = {}
+        step = 0
+        prev_frame = {}
         for frame_var_dict in frame_list:
-            for var, obj in frame_var_dict.items():
-                if isinstance(obj, Node):
-                    #point var to obj node
-                    pass
+            if frame_var_dict != prev_frame:
+                for var, obj in frame_var_dict.items():
+                    if isinstance(obj, Node):
+                        state = get_state(G)
+                        state.pointers[var] = obj_id[obj]  # obj_id is a dictionary mapping
+                                                           # obj to its cytoscape id. id should be unique.
+                        trace[step] = state
+                        step += 1
 
     def check_var_assignment(self, frame):
         variables = frame.f_code.co_varnames
