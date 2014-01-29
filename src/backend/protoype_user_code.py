@@ -42,6 +42,14 @@ class LinkedList:
 
 class Visualize(bdb.Bdb):
 
+    @staticmethod
+    def create_visualization(frame_list):
+        for frame_var_dict in frame_list:
+            for var, obj in frame_var_dict.items():
+                if isinstance(obj, Node):
+                    #point var to obj node
+                    pass
+
     def check_var_assignment(self, frame):
         variables = frame.f_code.co_varnames
         node_variables = []
