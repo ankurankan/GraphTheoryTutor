@@ -2,24 +2,39 @@ import bdb
 
 ############################## Example with manually extracting frames #################################################
 # >>> def traverse():
-# ...     linked = LinkedList([1,2,3,4,5,6,7,8,9])
-# ...     curr = linked.head
-# ...     print(sys._getframe(0).f_locals)
-# ...     while curr:
-# ...             curr = curr.next
-# ...             print(sys._getframe(0).f_locals)
-# ...
+# 	frame_list.append(deepcopy(sys._getframe(0).f_locals))
+# 	linked = LinkedList([1,2,3,4,5,6,7,8,9])
+# 	frame_list.append(deepcopy(sys._getframe(0).f_locals))
+# 	curr = linked.head
+# 	frame_list.append(deepcopy(sys._getframe(0).f_locals))
+# 	while curr:
+# 		frame_list.append(deepcopy(sys._getframe(0).f_locals))
+# 		curr = curr.next
+# 		frame_list.append(deepcopy(sys._getframe(0).f_locals))
+#
 # >>> traverse()
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cee790>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9ceec50>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3190>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3850>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3410>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3390>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3450>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf3490>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': <__main__.Node object at 0x7f04c9cf34d0>}
-# {'linked': <__main__.LinkedList object at 0x7f04c9ceeed0>, 'curr': None}
+# >>> frame_list
+# [{},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60210>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60590>, 'curr': <__main__.Node object at 0x7f3fe9f605d0>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60810>, 'curr': <__main__.Node object at 0x7f3fe9f60850>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60a90>, 'curr': <__main__.Node object at 0x7f3fe9f60b10>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60d10>, 'curr': <__main__.Node object at 0x7f3fe9f60d90>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f60f90>, 'curr': <__main__.Node object at 0x7f3fe9f63090>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f63250>, 'curr': <__main__.Node object at 0x7f3fe9f63310>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f634d0>, 'curr': <__main__.Node object at 0x7f3fe9f635d0>}, 
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f63750>, 'curr': <__main__.Node object at 0x7f3fe9f63850>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f639d0>, 'curr': <__main__.Node object at 0x7f3fe9f63b10>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f63c50>, 'curr': <__main__.Node object at 0x7f3fe9f63d90>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f63ed0>, 'curr': <__main__.Node object at 0x7f3fe9f69090>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69190>, 'curr': <__main__.Node object at 0x7f3fe9f69310>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69410>, 'curr': <__main__.Node object at 0x7f3fe9f695d0>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69690>, 'curr': <__main__.Node object at 0x7f3fe9f69850>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69910>, 'curr': <__main__.Node object at 0x7f3fe9f69b10>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69b90>, 'curr': <__main__.Node object at 0x7f3fe9f69d90>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f69e10>, 'curr': <__main__.Node object at 0x7f3fe9f5f090>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f5f0d0>, 'curr': <__main__.Node object at 0x7f3fe9f5f310>},
+# {'linked': <__main__.LinkedList object at 0x7f3fe9f5f350>, 'curr': None}]
 ########################################################################################################################
 
 
